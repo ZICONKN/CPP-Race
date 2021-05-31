@@ -12,11 +12,13 @@
 
 using namespace std;
 
+
 void gotoxy(int x, int y)
 {
-        COORD koord = {x, y};
-        SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), koord);
+    COORD koord = {x, y};
+    SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), koord);
 }
+
 
 void Credit()
 {
@@ -31,6 +33,7 @@ void Credit()
     gotoxy(BATAS_KANAN + 5, 14); cout << "KLIK KEYPAD MANA AJA";
 }
 
+
 void gambarLatar()
 {
     for(int i = 0; i <= 24; i++)
@@ -42,16 +45,18 @@ void gambarLatar()
     }
 }
 
+
 void gambarJalan(int spasi, int awal)
 {
-      for(int i = awal + 1; i <= 24; i += spasi)
-      {
-              gotoxy(BATAS_KIRI, i - 1); cout << KOTAK << KOTAK;
-              gotoxy(BATAS_KANAN, i - 1); cout << KOTAK << KOTAK;
-              gotoxy(BATAS_KIRI, i); cout << "  ";
-              gotoxy(BATAS_KANAN, i); cout << "  ";
-      }
+    for(int i = awal + 1; i <= 24; i += spasi)
+    {
+        gotoxy(BATAS_KIRI, i - 1); cout << KOTAK << KOTAK;
+        gotoxy(BATAS_KANAN, i - 1); cout << KOTAK << KOTAK;
+        gotoxy(BATAS_KIRI, i); cout << "  ";
+        gotoxy(BATAS_KANAN, i); cout << "  ";
+    }
 }
+
 
 int abs(int a)
 {
@@ -73,6 +78,7 @@ void batangDarah(int a)
     }
 }
 
+
 void jarak(int iJarak)
 {
     gotoxy(1, 7);
@@ -80,6 +86,7 @@ void jarak(int iJarak)
     gotoxy(1, 8);
     cout << iJarak;
 }
+
 
 void Speed(int speed)
 {
@@ -91,12 +98,13 @@ void Speed(int speed)
     cout << speed;
 }
 
+
 class car {
-  public :
-    int x,y,darah, kebal;
-    bool exis;
-    string gambar[5];
-    car()
+    public :
+        int x,y,darah, kebal;
+        bool exis;
+        string gambar[5];
+        car()
     {
         x = 25;
         y = 20;
@@ -117,16 +125,16 @@ class car {
     {
       if(x > 20)
        {
-         hapus();
-         x -= 1;
+            hapus();
+            x -= 1;
        }
     }
     void keKanan()
     {
        if(x + 2 < 56)
        {
-         hapus();
-         x += 1;
+            hapus();
+            x += 1;
        }
     }
     void keBawah()
@@ -169,31 +177,32 @@ class car {
             gotoxy(x, i);
             for(int j = 0; j < gambar[i - y].length(); j++)
             {
-             if(gambar[i - y][j] == '0') cout << char(221); else
-             if(gambar[i - y][j] == '1') cout << char(222); else
-             if(gambar[i - y][j] == '+') cout << BATANG; else
-             if(gambar[i - y][j] == '-') cout << char(220); else
-             cout << " ";
+                    if(gambar[i - y][j] == '0') cout << char(221); else
+                    if(gambar[i - y][j] == '1') cout << char(222); else
+                    if(gambar[i - y][j] == '+') cout << BATANG; else
+                    if(gambar[i - y][j] == '-') cout << char(220); else
+                    cout << " ";
             }
         }
     }
     void buatGambar()
     {
-                 if(kebal == 0)
-                 {
-                   gores();
-                 } else
-                 {
-                   if(kebal % 2 == 0)
-                   {
+                    if(kebal == 0)
+                    {
                     gores();
-                   }
-                   else {
+                    } else
+                    {
+                    if(kebal % 2 == 0)
+                    {
+                    gores();
+                    }
+                    else {
                     hapus();
-                   }
-                 }
+            }
+        }
     }
 };
+
 
 void tulisTengah(string s, int y)
 {
@@ -201,11 +210,13 @@ void tulisTengah(string s, int y)
     cout << s;
 }
 
+
 void tidur(int a)
 {
     time_t now = clock();
     while((clock() - now) < a) {};
 }
+
 
 void opening()
 {
@@ -225,12 +236,13 @@ void opening()
     tulisTengah("            ", 10);
 }
 
+
 int main()
 {
- int spk = 0;
- float fSpk = 0;
-  while(spk <= 0)
-  {
+    int spk = 0;
+    float fSpk = 0;
+    while(spk <= 0)
+    {
     system("cls");
     tulisTengah("GAME GAJELAS BY ZICC INTINYA LAGI GABUT AJA", 10);
     tulisTengah("==========================================", 12);
@@ -239,9 +251,8 @@ int main()
     tulisTengah("MASUKKAN ANGKA YAAAAAAA [ MULAI DARI 0 ]: ", 18);
     cin >> fSpk;
     spk = (int) fSpk;
-  }
-  system("cls");
-
+    }
+    system("cls");
     srand(clock());
     car pemainUtama;
     car enemy[4];
@@ -277,11 +288,10 @@ int main()
             }
         pemainUtama.buatGambar();
 
-        //generate musuh
         for(int i = 0; i <= 2; i++)
         {
-           if(enemy[i].exis == true)
-           {
+            if(enemy[i].exis == true)
+            {
             enemy[i].keBawah();
             enemy[i].buatGambar();
             if(enemy[i].y > 20)
@@ -335,7 +345,6 @@ int main()
     tulisTengah("=========================================", 19);
     tidur(5000);
     getch();
-
 
     return 0;
 }
